@@ -234,7 +234,6 @@ static void entity_tick(map_param, struct entity *e, int level)
 static void main_loop_body(map_param, int level)
 {
     int i, r, c;
-
     for (i = 0; i < MAP_ROWS*MAP_COLS; i++) {
         r = i / MAP_COLS;
         c = i % MAP_COLS;
@@ -246,10 +245,11 @@ static void main_loop_body(map_param, int level)
             mvaddch(e(i).r, e(i).c, entity_char(i));
         }
     }
-    player_tick(map, &e(0), level);
+
     standout();
     mvaddch(e(0).r, e(0).c, entity_char(0));
     standend();
+    player_tick(map, &e(0), level);
 }
 
 int main()
